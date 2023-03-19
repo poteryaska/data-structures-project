@@ -18,6 +18,11 @@ class Stack:
         """Конструктор класса Stack"""
         self.top = None
 
+    def __str__(self):
+        if self.top == None:
+            return 'None'
+        return f"{self.top.data}"
+
 
     def push(self, data):
         """

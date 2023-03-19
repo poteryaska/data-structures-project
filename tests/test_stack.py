@@ -14,5 +14,6 @@ class TestStack(unittest.TestCase):
         self.assertEqual(stack.top.next_node.data, '555')
         stack.pop()
         self.assertEqual(stack.top.data, '555')
+        self.assertEqual(stack.__str__(), '555')
 
 
