@@ -19,7 +19,7 @@ class Stack:
         self.top = None
 
     def __str__(self):
-        if self.top == None:
+        if self.top is None:
             return 'None'
         return f"{self.top.data}"
 

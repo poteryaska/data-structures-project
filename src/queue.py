@@ -10,6 +10,8 @@ class Node:
         """
         self.data = data
         self.next_node = next_node
+        self.prev_node = None
+
     def __repr__(self):
         return f"{self.data}"
 
@@ -34,6 +36,7 @@ class Queue:
             self.tail = self.head
         else:
             self.tail.next_node = Node(data)
+            self.tail.next_node.prev_node = self.tail
             self.tail = self.tail.next_node
 
     def dequeue(self):
@@ -43,23 +46,24 @@ class Queue:
         :return: данные удаленного элемента
         """
         if self.head and self.tail is not None:
-            old_head = self.head
+            remove_head = self.head
             if self.head.next_node is not None:
                 new_head = self.head.next_node
                 del self.head
                 self.head = new_head
-                return old_head.data
+                self.head.prev_node = None
+                return remove_head.data
             else:
                 self.head = None
                 self.tail = None
-                return old_head.data
+                return remove_head.data
 
     def __str__(self):
         """Магический метод для строкового представления объекта"""
         all_queues = []
         item = self.tail
         while item is not None:
-            all_queues.append(item.data)
+            all_queues.append(item.data + '\n')
+            item = item.prev_node
         all_queues.reverse()
-        return f"{''.join(all_queues)}"
-        # return f"{self.head.data}\n{self.head.next_node.data}\n{self.tail.data}"
+        return f"{''.join(all_queues).rstrip()}"
