@@ -12,7 +12,7 @@ class Node:
         """
         self.data = data
         self.next_node = next_node
-        self.prev_node = None
+
 
     def __repr__(self):
         return f"{self.data}"
@@ -37,7 +37,6 @@ class Queue:
             self.tail = self.head
         else:
             self.tail.next_node = Node(data)
-            self.tail.next_node.prev_node = self.tail
             self.tail = self.tail.next_node
 
     def dequeue(self):
@@ -55,10 +54,11 @@ class Queue:
 
     def __str__(self):
         """Магический метод для строкового представления объекта"""
+        if not self.head:
+            return ''
         all_queues = []
-        item = self.tail
-        while item is not None:
-            all_queues.append(item.data + '\n')
-            item = item.prev_node
-        all_queues.reverse()
-        return f"{''.join(all_queues).rstrip()}"
+        head = self.head
+        while head:
+            all_queues.append(head.data)
+            head = head.next_node
+        return '\n'.join(all_queues)
