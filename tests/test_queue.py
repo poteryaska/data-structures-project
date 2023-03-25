@@ -16,3 +16,11 @@ class TestStack(unittest.TestCase):
         self.assertEqual(queue.head.next_node.data, '222')
         self.assertEqual(queue.tail.data, '333')
         self.assertEqual(str(queue), '111\n222\n333')
+        queue.dequeue()
+        self.assertEqual(queue.head.data, '222')
+        queue.dequeue()
+        self.assertEqual(queue.head.data, '333')
+        queue.dequeue()
+        self.assertEqual(queue.dequeue(), None)
+
+

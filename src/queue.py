@@ -1,4 +1,6 @@
 import queue
+
+
 class Node:
     """Класс для узла очереди"""
 
@@ -24,7 +26,6 @@ class Queue:
         self.head = None
         self.tail = None
 
-
     def enqueue(self, data: str):
         """
         Метод для добавления элемента в очередь
@@ -45,18 +46,12 @@ class Queue:
 
         :return: данные удаленного элемента
         """
-        if self.head and self.tail is not None:
-            remove_head = self.head
-            if self.head.next_node is not None:
-                new_head = self.head.next_node
-                del self.head
-                self.head = new_head
-                self.head.prev_node = None
-                return remove_head.data
-            else:
-                self.head = None
-                self.tail = None
-                return remove_head.data
+        if self.head is not None:
+            data = self.head.data
+            self.head = self.head.next_node
+            return data
+        else:
+            return None
 
     def __str__(self):
         """Магический метод для строкового представления объекта"""
