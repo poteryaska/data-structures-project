@@ -30,5 +30,13 @@ class TestStack(unittest.TestCase):
                                         {'id': 2, 'username': 'mik.roz'},
                                         {'id': 3, 'username': 'mosh_s'}])
         self.assertEqual(ll.get_data_by_id(3), {'id': 3, 'username': 'mosh_s'})
-        ll.insert_at_end({'222'})
-        # self.assertRa(ll.get_data_by_id(4), TypeError'Данные не являются словарем или в словаре нет id.')
+
+    def test_LinkedList_2(self):
+        with self.assertRaises(TypeError) as exp:
+            ll = LinkedList()
+            ll.insert_beginning({'id': 1, 'username': 'lazzy508509'})
+            ll.insert_at_end({'id': 2, 'username': 'mik.roz'})
+            ll.insert_at_end({'222'})
+            self.assertTrue('Данные не являются словарем или в словаре нет id.' in exp)
+
+
